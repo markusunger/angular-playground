@@ -1,0 +1,23 @@
+<mat-list>
+  <mat-list-item *ngFor="let item of items">
+    <h3 matLine [ngClass]="{ strikethrough: item.done }">{{ item.name }}</h3>
+    <mat-checkbox
+      aria-label="item done status"
+      [checked]="item.done"
+      [indeterminate]="false"
+      [id]="item.id.toString()"
+      (change)="changeDoneStatus($event)"
+    ></mat-checkbox>
+    <button
+      mat-icon-button
+      aria-label="Delete item"
+      (click)="deleteItem(item.id)"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>
+
+<div *ngIf="items.length === 0">
+  <p>Keine Items vorhanden.</p>
+</div>
